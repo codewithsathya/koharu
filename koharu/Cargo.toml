@@ -23,10 +23,12 @@ include = [
 
 [dependencies]
 koharu-app = { workspace = true }
+koharu-core = { workspace = true }
 koharu-rpc = { workspace = true }
 koharu-runtime = { workspace = true }
 koharu-llm = { workspace = true }
 anyhow = { workspace = true }
+camino = { workspace = true }
 clap = { workspace = true }
 git-version = { workspace = true }
 serde_json = { workspace = true }

@@ -4,6 +4,7 @@ pub mod cli;
 pub mod panic;
 pub mod sentry;
 pub mod tracing;
+pub mod translate;
 pub mod version;
 #[cfg(target_os = "windows")]
 pub mod windows;

@@ -52,15 +52,29 @@ pub async fn run() -> Result<()> {
         crate::windows::enable_ansi_support().ok();
     }
 
+    // `translate` prints its own clean per-stage output via println!, so silence
+    // the INFO span-tree waterfall + engine timing spam (default WARN). RUST_LOG
+    // still overrides if a user wants the firehose back.
+    let default_level = if matches!(cli.command, Some(crate::cli::Command::Translate(_))) {
+        tracing::Level::WARN
+    } else {
+        tracing::Level::INFO
+    };
     tracing_subscriber::registry()
         .with(
             tracing_subscriber::filter::EnvFilter::builder()
-                .with_default_directive(tracing::Level::INFO.into())
+                .with_default_directive(default_level.into())
                 .from_env_lossy(),
         )
         .with(crate::sentry::tracing_layer())
         .with(crate::tracing::TimingLayer::new())
         .init();
+
+    // Headless `translate` subcommand: runs the full pipeline without a GUI or
+    // HTTP server, then exits.
+    if let Some(crate::cli::Command::Translate(args)) = &cli.command {
+        return crate::translate::run(args, cli.cpu).await;
+    }
 
     let config: AppConfig = app_config::load()?;
     let http = RuntimeHttpConfig {

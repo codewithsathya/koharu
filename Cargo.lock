@@ -4170,10 +4170,12 @@ name = "koharu"
 version = "0.61.2"
 dependencies = [
  "anyhow",
+ "camino",
  "clap",
  "console",
  "git-version",
  "koharu-app",
+ "koharu-core",
  "koharu-llm",
  "koharu-rpc",
  "koharu-runtime",
@@ -4238,6 +4240,7 @@ dependencies = [
  "koharu-renderer",
  "koharu-runtime",
  "lru",
+ "natord",
  "parking_lot",
  "petgraph",
  "postcard",

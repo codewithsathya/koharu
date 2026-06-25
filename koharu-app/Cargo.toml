@@ -37,6 +37,7 @@ fs4 = { workspace = true }
 image = { workspace = true }
 inventory = { workspace = true }
 lru = { workspace = true }
+natord = { workspace = true }
 parking_lot = { workspace = true }
 petgraph = { workspace = true }
 postcard = { workspace = true }
