@@ -3,7 +3,7 @@
     "ui/"
   ],
   "scripts": {
-    "dev": "bun run scripts/dev.ts tauri dev -- --profile=release-with-debug",
+    "dev": "bun run scripts/dev.ts tauri dev -- --profile=release-with-debug -- --port 4000",
     "build": "bun run scripts/dev.ts tauri build --no-bundle",
     "cargo": "bun run scripts/dev.ts cargo",
     "lint:ui": "bun run --filter ui lint",
